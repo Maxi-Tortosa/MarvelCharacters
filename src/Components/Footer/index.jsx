@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TiSocialLinkedin, TiSocialGithub } from 'react-icons/ti';
+import { RiWhatsappLine, RiPhoneLine } from 'react-icons/ri';
 
 const Footer = () => {
 	return (
@@ -8,13 +9,15 @@ const Footer = () => {
 				<div className='developerData'>
 					<div className='data'>
 						<p>maximilianotortosa@gmail.com</p>
-						<p>Tel/Whatsapp: 3517637557</p>
+						<p>
+							<RiWhatsappLine /> <RiPhoneLine /> 3517637557
+						</p>
 					</div>
 					<div className='socialMedia'>
 						<a href='https://www.linkedin.com/in/maximilianotortosa/'>
 							<TiSocialLinkedin className='linkedIn' />
 						</a>
-						<a href='https://github.com/Maxi-Tortosa/marvelCharactersLenio'>
+						<a href='https://github.com/Maxi-Tortosa/MarvelCharacters'>
 							<TiSocialGithub className='gitHub' />
 						</a>
 					</div>
@@ -34,7 +37,7 @@ const Container = styled.div`
 
 	.copy {
     background-color:red;
-		font-weight: 700;
+		font-weight: 500;
 		font-size: 14pt;
 		text-align: center;
     padding: 16px 0px;
@@ -48,18 +51,20 @@ const Container = styled.div`
 		justify-content: center;
 
     .data {
-      width:80%;
+      width:70%;
 
       p {
 			font-size: 12pt;
+			font-weight:500;
       margin: 10px 20px;
       color:whitesmoke;
+			text-align: center;
       
 		  }
     }
 
   .socialMedia{
-    width: 20%;
+    width: 30%;
     display:flex; 
     justify-content:center;
     
