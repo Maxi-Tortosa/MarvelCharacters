@@ -4,7 +4,7 @@ const hash = '19c7cd4b1c709529fd9ac46322673af2';
 export const getCharacters = async (query) => {
 	try {
 		const result = await axios.get(
-			`https://gateway.marvel.com/v1/public/characters?${
+			`https://gateway.marvel.com/v1/public/characters?limit=60&offset=10${
 				query ? `nameStartsWith=${query}&` : ''
 			}orderBy=name&ts=1&apikey=${pukey}&hash=${hash}`
 		);

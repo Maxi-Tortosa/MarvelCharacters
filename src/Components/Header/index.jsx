@@ -31,7 +31,7 @@ export default Header;
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	background-color: black;
+	background-color: rgba(32, 32, 32, 1);
 	align-items: center;
 	width: 100%;
 

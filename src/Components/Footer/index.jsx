@@ -31,11 +31,12 @@ const Footer = () => {
 export default Footer;
 
 const Container = styled.div`
-	background-color: black;
+	background-color: rgba(32, 32, 32, 2);
 	display: flex;
 	flex-direction: column;
 
 	.copy {
+		color:rgba(32, 32, 32, 1);
     background-color:red;
 		font-weight: 500;
 		font-size: 14pt;
