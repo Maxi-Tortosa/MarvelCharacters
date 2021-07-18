@@ -17,14 +17,6 @@ const Character = ({ character }) => {
 				<div className='card__body'>
 					<p>{name}</p>
 				</div>
-				{/* <Link id={id} to={`/character/${name}`}> */}
-				{/* <div className='character__container'>
-					<img src={thumbnail.path + '.' + thumbnail.extension} alt='' />
-				</div> */}
-				{/* </Link> */}
-				{/* <div className='character__container__textContainer'>
-					<p>Personaje</p>
-				</div> */}
 			</Card>
 		</>
 	);
