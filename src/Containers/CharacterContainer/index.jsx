@@ -1,34 +1,23 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import { getCharacters } from '../../Api/index';
+import { useState, useContext } from 'react';
 import Character from '../../Components/Character/index';
 import Pagination from '../../Components/Pagination';
+import { charactersContext } from '../../Context/CharactersContext';
 
 const CharacterContainer = () => {
-	const [characters, setCharacters] = useState([]);
+	const { characters } = useContext(charactersContext);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [charactersPerPage, setCharactersPerPage] = useState(6);
 
-	useEffect(() => {
-		getCharacters()
-			.then((characters) => {
-				setCharacters(characters);
-			})
-			.finally(() => {});
-	}, []);
-
 	const indexOfLastCharacter = currentPage * charactersPerPage;
 	const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;
-	const currentCharaters = characters.slice(
+	const currentCharacters = characters.slice(
 		indexOfFirstCharacter,
 		indexOfLastCharacter
 	);
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
-
-	/*ver de darle un estilo a la current*/
-	/*Tener en cuenta que no quede vacío cuando hago next page, ver de solucionarlo con alguna función de indexOf*/
 
 	const changePage = (e) => {
 		if (e.target.className === '1') {
@@ -40,7 +29,7 @@ const CharacterContainer = () => {
 	return (
 		<>
 			<Container>
-				{currentCharaters.map((character) => {
+				{currentCharacters.map((character) => {
 					return <Character key={character.id} character={character} />;
 				})}
 			</Container>
