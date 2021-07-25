@@ -40,7 +40,6 @@ const Card = styled.div`
 	.card__body {
 		height: 75px;
 		padding: 10px;
-
 		background-color: rgba(21, 21, 21, 1);
 		p {
 			color: whitesmoke;

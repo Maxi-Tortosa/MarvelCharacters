@@ -27,7 +27,7 @@ const Pagination = ({
 	}
 
 	return (
-		<PageNumber>
+		<Container>
 			{totalCharacters ? (
 				<ul>
 					{currentPage > 1 ? (
@@ -96,12 +96,12 @@ const Pagination = ({
 					) : null}
 				</ul>
 			) : null}
-		</PageNumber>
+		</Container>
 	);
 };
 export default Pagination;
 
-const PageNumber = styled.div`
+const Container = styled.div`
 	ul {
 		margin: 0;
 		padding: 0;
@@ -110,21 +110,24 @@ const PageNumber = styled.div`
 		list-style-type: none;
 		align-content: center;
 		justify-content: center;
-		color: rgba(32, 32, 32, 1);
+		
 		li {
 			display: flex;
 			align-items: center;
 			font-size: 15pt;
-			margin: 0 2px;		
+			margin: 0 1.9%;		
 			}
 			a {
 				text-decoration: none;
 				display: flex;
 				align-items: center;
 				color: rgba(32, 32, 32, 1);
+				font-weight: 300 ;
+				
+
 			}
 			a:active {color:red;}
-			.active{font-weight:bold;}
+			.active{font-weight:500;}
 		}
 	}
 `;

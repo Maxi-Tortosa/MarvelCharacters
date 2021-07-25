@@ -18,9 +18,6 @@ const Header = () => {
 						alt='Marvel Logo'
 					/>
 				</Link>
-				<div className='div2'>
-					<p>MARVEL CHARACTERS LIST</p>
-				</div>
 			</Container>
 		</>
 	);
