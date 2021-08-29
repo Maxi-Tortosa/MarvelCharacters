@@ -6,9 +6,10 @@ export const charactersContext = createContext();
 const CharactersContext = ({ children }) => {
 	const [characters, setCharacters] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
-	const [search, setSearch] = useState();
-	const [searchedCharacters, setSearchedCharacters] = useState([]);
-	const [valueCounter, setValueCounter] = useState();
+	const [search, setSearch] = useState([]);
+	const [searchedCharacters, setSearchedCharacters] = useState();
+	const [chosenCharacter, setChosenCharacter] = useState(null);
+	const [focus, setFocus] = useState(false);
 
 	/* Character Container */
 
@@ -25,9 +26,15 @@ const CharactersContext = ({ children }) => {
 	/* Searcher List */
 
 	useEffect(() => {
-		getCharacters(search).then((characters) => {
-			setSearchedCharacters(characters);
-		});
+		if (search.length >= 3) {
+			getCharacters(search).then((characters) => {
+				setSearchedCharacters(characters);
+			});
+		} else if (search.length === 1 || search.length === 2) {
+			setSearchedCharacters(undefined);
+		} else {
+			setSearchedCharacters([]);
+		}
 	}, [search]);
 
 	return (
@@ -39,8 +46,10 @@ const CharactersContext = ({ children }) => {
 				setSearch,
 				searchedCharacters,
 				setSearchedCharacters,
-				valueCounter,
-				setValueCounter,
+				chosenCharacter,
+				setChosenCharacter,
+				focus,
+				setFocus,
 			}}>
 			{children}
 		</charactersContext.Provider>

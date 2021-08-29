@@ -1,6 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
+import { Link } from 'react-router-dom';
 
 const Pagination = ({
 	charactersPerPage,
@@ -32,24 +32,24 @@ const Pagination = ({
 				<ul>
 					{currentPage > 1 ? (
 						<li>
-							<a className='1' onClick={changePage} href='!#'>
+							<Link to={''} className='1' onClick={changePage}>
 								<GrFormPrevious />
 								PREV
-							</a>
+							</Link>
 						</li>
 					) : null}
 					{currentPage === 2 ? (
 						<li>
-							<a onClick={() => paginate(1)} href='!#'>
+							<Link to={''} onClick={() => paginate(1)}>
 								1
-							</a>
+							</Link>
 						</li>
 					) : currentPage >= 3 ? (
 						<>
 							<li>
-								<a onClick={() => paginate(1)} href='!#'>
+								<Link to={''} onClick={() => paginate(1)}>
 									1
-								</a>
+								</Link>
 							</li>
 							<li>
 								<p>...</p>
@@ -58,14 +58,14 @@ const Pagination = ({
 					) : null}
 					{paginationNumbers.map((number) => (
 						<li key={number}>
-							<a
+							<Link
+								to={''}
 								className={currentPage === number ? 'active' : null}
 								onClick={() => {
 									paginate(number);
-								}}
-								href='!#'>
+								}}>
 								{number}
-							</a>
+							</Link>
 						</li>
 					))}
 
@@ -75,23 +75,23 @@ const Pagination = ({
 								<p>...</p>
 							</li>{' '}
 							<li>
-								<a onClick={() => paginate(pageNumbers.length)} href='!#'>
+								<Link to={''} onClick={() => paginate(pageNumbers.length)}>
 									{pageNumbers.length}
-								</a>
+								</Link>
 							</li>{' '}
 						</>
 					) : currentPage === pageNumbers.length - 4 ? (
 						<li>
-							<a onClick={() => paginate(pageNumbers.length)} href='!#'>
+							<Link to={''} onClick={() => paginate(pageNumbers.length)}>
 								{pageNumbers.length}
-							</a>
+							</Link>
 						</li>
 					) : null}
 					{currentPage < pageNumbers.length ? (
 						<li>
-							<a onClick={changePage} href='!#'>
+							<Link to={''} onClick={changePage}>
 								NEXT <GrFormNext />
-							</a>
+							</Link>
 						</li>
 					) : null}
 				</ul>
@@ -117,16 +117,15 @@ const Container = styled.div`
 			font-size: 15pt;
 			margin: 0 1.9%;		
 			}
+
 			a {
 				text-decoration: none;
 				display: flex;
 				align-items: center;
 				color: rgba(32, 32, 32, 1);
-				font-weight: 300 ;
-				
+				font-weight: 300 ;	
+			}		
 
-			}
-			a:active {color:red;}
 			.active{font-weight:500;}
 		}
 	}

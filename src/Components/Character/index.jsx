@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Character = ({ character }) => {
 	const { id, name, thumbnail } = character;
@@ -8,12 +7,14 @@ const Character = ({ character }) => {
 	return (
 		<>
 			<Card>
-				<div className='card__thumb'>
-					<img
-						src={thumbnail.path + '.' + thumbnail.extension}
-						alt='characterImage'
-					/>
-				</div>
+				<Link id={id} to={`/character/${name}`}>
+					<div className='card__thumb'>
+						<img
+							src={thumbnail.path + '.' + thumbnail.extension}
+							alt='characterImage'
+						/>
+					</div>
+				</Link>
 				<div className='card__body'>
 					<p>{name}</p>
 				</div>

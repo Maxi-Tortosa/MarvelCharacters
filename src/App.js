@@ -3,6 +3,7 @@ import Header from './Components/Header';
 import Footer from './Components/Footer';
 import CharacterContainer from './Containers/CharacterContainer/index';
 import CharactersContext from './Context/CharactersContext';
+import CharacterDetailContainer from './Containers/CharacterDetailContainer/index';
 
 function App() {
 	return (
@@ -10,7 +11,14 @@ function App() {
 			<Router>
 				<Header />
 				<CharactersContext>
-					<CharacterContainer />
+					<Switch>
+						<Route exact path='/'>
+							<CharacterContainer />
+						</Route>
+						<Route exact path='/character/:name'>
+							<CharacterDetailContainer />
+						</Route>
+					</Switch>
 				</CharactersContext>
 				<Footer />
 			</Router>

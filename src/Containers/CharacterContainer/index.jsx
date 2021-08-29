@@ -6,7 +6,8 @@ import Searcher from '../../Components/Searcher/index';
 import { charactersContext } from '../../Context/CharactersContext';
 
 const CharacterContainer = () => {
-	const { characters, isLoading } = useContext(charactersContext);
+	const { characters, isLoading, chosenCharacter } =
+		useContext(charactersContext);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [charactersPerPage, setCharactersPerPage] = useState(10);
 
@@ -16,6 +17,7 @@ const CharacterContainer = () => {
 		indexOfFirstCharacter,
 		indexOfLastCharacter
 	);
+
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
@@ -27,6 +29,9 @@ const CharacterContainer = () => {
 			setCurrentPage(currentPage + 1);
 		}
 	};
+
+	/*crear otro container para los resultados de los personajes*/
+
 	return (
 		<>
 			<Container>
@@ -37,26 +42,39 @@ const CharacterContainer = () => {
 				<Searcher />
 				{characters && (
 					<div className='results'>
-						<p>{characters.length} results </p>{' '}
+						{chosenCharacter ? (
+							<p> 1 result </p>
+						) : (
+							<p>{characters.length} results </p>
+						)}
 					</div>
 				)}
-				<div className='div3'>
-					{currentCharacters.map((character) => {
-						return <Character key={character.id} character={character} />;
-					})}
+
+				<div className='div2'>
+					{chosenCharacter === null ? (
+						currentCharacters.map((character) => {
+							return <Character key={character.id} character={character} />;
+						})
+					) : (
+						<Character character={chosenCharacter} />
+					)}
+
 					{isLoading && (
 						<div className='loading'>
 							<p>Loading</p>
 						</div>
 					)}
 				</div>
-				<Pagination
-					charactersPerPage={charactersPerPage}
-					totalCharacters={characters.length}
-					paginate={paginate}
-					changePage={changePage}
-					currentPage={currentPage}
-				/>
+
+				{chosenCharacter ? null : (
+					<Pagination
+						charactersPerPage={charactersPerPage}
+						totalCharacters={characters.length}
+						paginate={paginate}
+						changePage={changePage}
+						currentPage={currentPage}
+					/>
+				)}
 			</Container>
 		</>
 	);
@@ -69,11 +87,11 @@ const Container = styled.div`
 		margin 9%; 
 		p {font-size:18pt;}
 	}
-	.div2{}
+	
 
 	.results { margin: 0 9% 0 9%}
 
-	.div3 {
+	.div2 {
 		display: grid;
 		grid-template-columns: auto auto;
 		justify-content: space-evenly;

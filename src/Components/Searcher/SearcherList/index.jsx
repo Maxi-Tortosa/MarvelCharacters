@@ -1,31 +1,31 @@
 import styled from 'styled-components';
-import { useContext, useState } from 'react';
+import SearcherListElement from './SearcherListElement/index';
+import { useContext } from 'react';
 import { charactersContext } from '../../../Context/CharactersContext';
 
-const SearcherList = ({ search, valueCounter }) => {
-	const { searchedCharacters } = useContext(charactersContext);
+const SearcherList = ({ search, searchedCharacters }) => {
+	const { focus } = useContext(charactersContext);
 
-	console.log(searchedCharacters);
+	console.log(focus);
 
 	return (
 		<>
 			<Container>
-				<ul className='searcherList'>
-					{search && searchedCharacters && valueCounter >= 3
-						? searchedCharacters.map((characters) => (
-								<li key={characters.id}>
-									<button>{characters.name}</button>
-								</li>
+				<ul className={focus ? 'searcherList' : 'hidden'}>
+					{search && searchedCharacters && search.length >= 3
+						? searchedCharacters.map((character) => (
+								<SearcherListElement key={character.id} character={character} />
 						  ))
 						: null}
 
-					{valueCounter === 1 || valueCounter === 2 ? (
+					{search.length === 1 || search.length === 2 ? (
 						<p className='keepTyping'>Keep typing ...</p>
-					) : searchedCharacters &&
-					  valueCounter >= 3 &&
-					  searchedCharacters.length === 0 ? (
-						<p className='noResults'> No results! </p>
 					) : null}
+					{searchedCharacters &&
+						search &&
+						(search.length >= 3 && searchedCharacters.length === 0 ? (
+							<p className='noResults'> No results! </p>
+						) : null)}
 				</ul>
 			</Container>
 		</>
@@ -35,7 +35,7 @@ const SearcherList = ({ search, valueCounter }) => {
 export default SearcherList;
 
 const Container = styled.div`
-	ul {
+	.searcherList {
 		position: absolute;
 		left: 8%;
 		top: 42%;
@@ -44,11 +44,9 @@ const Container = styled.div`
 		background-color: white;
 		width: 85%;
 	}
-
-	li {
-		list-style-type: none;
+	.hidden {
+		display: none;
 	}
-
 	button {
 		background-color: white;
 		border: none;
