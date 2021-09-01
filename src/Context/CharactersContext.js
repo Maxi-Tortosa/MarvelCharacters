@@ -10,6 +10,7 @@ const CharactersContext = ({ children }) => {
 	const [searchedCharacters, setSearchedCharacters] = useState();
 	const [chosenCharacter, setChosenCharacter] = useState(null);
 	const [focus, setFocus] = useState(false);
+	const [favorites, setFavorites] = useState([]);
 
 	/* Character Container */
 
@@ -37,6 +38,24 @@ const CharactersContext = ({ children }) => {
 		}
 	}, [search]);
 
+	/* Favorites*/
+
+	const addFavoriteHero = (newHero) => {
+		setFavorites((prevHeroes) => [...prevHeroes, newHero]);
+	};
+
+	const removeFavoriteHero = (idHero) => {
+		setFavorites((prevHeroes) =>
+			prevHeroes.filter((hero) => hero.id !== idHero)
+		);
+	};
+
+	if (favorites.length === 0) {
+		localStorage.clear();
+	} else {
+		localStorage.setItem('favorite', JSON.stringify(favorites));
+	}
+
 	return (
 		<charactersContext.Provider
 			value={{
@@ -50,6 +69,10 @@ const CharactersContext = ({ children }) => {
 				setChosenCharacter,
 				focus,
 				setFocus,
+				favorites,
+				setFavorites,
+				addFavoriteHero,
+				removeFavoriteHero,
 			}}>
 			{children}
 		</charactersContext.Provider>

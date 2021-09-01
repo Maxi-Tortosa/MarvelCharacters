@@ -6,8 +6,6 @@ import { charactersContext } from '../../../Context/CharactersContext';
 const SearcherList = ({ search, searchedCharacters }) => {
 	const { focus } = useContext(charactersContext);
 
-	console.log(focus);
-
 	return (
 		<>
 			<Container>

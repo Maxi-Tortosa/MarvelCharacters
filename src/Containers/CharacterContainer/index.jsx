@@ -52,9 +52,9 @@ const CharacterContainer = () => {
 
 				<div className='div2'>
 					{chosenCharacter === null ? (
-						currentCharacters.map((character) => {
-							return <Character key={character.id} character={character} />;
-						})
+						currentCharacters.map((character) => (
+							<Character key={character.id} character={character} />
+						))
 					) : (
 						<Character character={chosenCharacter} />
 					)}

@@ -4,6 +4,7 @@ import Footer from './Components/Footer';
 import CharacterContainer from './Containers/CharacterContainer/index';
 import CharactersContext from './Context/CharactersContext';
 import CharacterDetailContainer from './Containers/CharacterDetailContainer/index';
+import FavoritesContainer from './Containers/FavoritesContainer';
 
 function App() {
 	return (
@@ -17,6 +18,9 @@ function App() {
 						</Route>
 						<Route exact path='/character/:name'>
 							<CharacterDetailContainer />
+						</Route>
+						<Route>
+							<FavoritesContainer exact path='/favorites' />
 						</Route>
 					</Switch>
 				</CharactersContext>
